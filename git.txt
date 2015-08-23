@@ -58,6 +58,8 @@ $ git log # shows history of commits
 Situation: I have created and accidentally staged notrack.txt -> I want to stop tracking it =>
 $ git rm --cached notrack.txt
 
+$ git mv git_cache.txt git_cache
+
 
 
 

@@ -49,6 +49,11 @@ $git commit -v # puts the diff of your change in the editor
 $ git config --global core.editor 'notepad++'
 $ git add . # stages all modified files
 
+NB: "use "git reset HEAD <file>..." to unstage
+
+$ git checkout -- . # reset all unstaged changes
+$ git log # shows history of commits
+
 
 
 

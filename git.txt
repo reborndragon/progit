@@ -86,6 +86,30 @@ $ git commit --amend
 Unstaging: recall git reset HEAD <file>.
 $ git checkout -- git.txt # unmodifying a modified file:
 
+$ git checkout -- git.txt # unmodifying a modified file:
+NB: this command unmodifies only not staged changes.
+
+**** Working with Remotes ****
+
+Remote repositories are versions of your project that are hosted on the Internet or network somewhere.
+
+$ git remote # To see which remote servers you have configured
+
+$ git remote add origin https://github.com/reborndragon/progit # [short name] [url] # adds a new remote repo
+
+$ git remote -v # -v shows urls
+origin  https://github.com/reborndragon/progit (fetch)
+origin  https://github.com/reborndragon/progit (push)
+
+$ git fetch origin # [remote name] # goes out to that remote project and pulls down all the data from that remote project that you don’t have yet. After you do this, you should have references to all the branches from that remote
+NB: git fetch doesn’t automatically merge it with any of your work or modify what you’re currently working on
+
+$ git pull origin master # fetch and then merge a remote branch into your current branch
+
+$ git push origin master # [remote name] [branch name]
+NB: works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime
+
+
 
 
 

@@ -123,19 +123,38 @@ Git has the ability to tag specific points in history as being important. Typica
 
 $ git tag # Listing the available tags
 
+TODO:
+$ git tag -l 'v1.8.5*'
+
 Git uses two main types of tags: lightweight and annotated.
 A lightweight tag is very much like a branch that doesn’t change – it’s just a pointer to a specific commit.
 Annotated tags, however, are stored as full objects in the Git database. They’re checksummed; contain the tagger name, e-mail, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).
 
+$ git tag -a v1.1 -m 'Version 1.1' # adds an annotated commit
 $ git show v1.1
 
 lightweight tag is basically the commit checksum stored in a file – no other information is kept.
 
+$ git tag c2.6.1 # adds a lightweight tag
+$ git show c2.6.1 # shows less info than git show v1.1
+
+tag commits after you’ve moved past them:
+$ git tag -a v1.0.0 cefb900 -m 'random tag & random commit'
+
 TODO:
-$ git tag -l 'v1.8.5*'
+$ git push origin v1.2.3 # v1.2.3 is tag name; this allows to push the tag name to remote servers
+TODO: Sharing & checking out tags
 
+**** Git aliases ****
 
+$ git config --global alias.co checkout
+$ git config --global alias.unstage 'reset HEAD --' # '--' seems to be a param
 
+$ git log -1 HEAD # logs the last commit
+
+$ git unstage git.txt
+
+TODO: external (i.e. non-git) commands can also be aliased
 
 
 

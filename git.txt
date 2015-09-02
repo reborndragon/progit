@@ -77,6 +77,7 @@ $ git log --since='0 years 1 day ago' # you may as well use --until, --before, -
 $ git log --author=illyuha
 $ git log --grep='toremove' # search by key words
 $ git log -STODO # i.e. -S option: shows the commits that introduced a change to the code that added or removed that string ('TODO' in my case)
+$ git log git.txt
 
 **** Undoing Things ****
 
@@ -108,6 +109,35 @@ $ git pull origin master # fetch and then merge a remote branch into your curren
 
 $ git push origin master # [remote name] [branch name]
 NB: works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime
+
+$ git remote show origin # shows information about a particular remote
+# shows which remote branches on the server you don’t yet have, which remote branches you have that have been removed from the server, and multiple branches that are automatically merged when you run git pull
+
+$ git remote rename origin core
+
+$ git remote rm illya
+
+**** Tagging ****
+
+Git has the ability to tag specific points in history as being important. Typically people use this functionality to mark release points.
+
+$ git tag # Listing the available tags
+
+Git uses two main types of tags: lightweight and annotated.
+A lightweight tag is very much like a branch that doesn’t change – it’s just a pointer to a specific commit.
+Annotated tags, however, are stored as full objects in the Git database. They’re checksummed; contain the tagger name, e-mail, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG).
+
+$ git show v1.1
+
+lightweight tag is basically the commit checksum stored in a file – no other information is kept.
+
+TODO:
+$ git tag -l 'v1.8.5*'
+
+
+
+
+
 
 
 

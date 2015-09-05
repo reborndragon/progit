@@ -55,6 +55,9 @@ $ git checkout -- . # reset all unstaged changes
 $ git log # shows history of commits
 # git rm toremove.txt # removes the file from staging area and from working dir
 
+$ git commit -a -m 'msg' # skips staging area, i.e. stage every file that is already tracked before doing the commit, letting you skip the git add part
+NB: this should not commit files that were not in last snapshot, i.e. untracked ones
+
 Situation: I have created and accidentally staged notrack.txt -> I want to stop tracking it =>
 $ git rm --cached notrack.txt
 
@@ -85,8 +88,6 @@ you commit too early and possibly forget to add some files, or you mess up your 
 $ git commit --amend
 
 Unstaging: recall git reset HEAD <file>.
-$ git checkout -- git.txt # unmodifying a modified file:
-
 $ git checkout -- git.txt # unmodifying a modified file:
 NB: this command unmodifies only not staged changes.
 
@@ -155,6 +156,33 @@ $ git log -1 HEAD # logs the last commit
 $ git unstage git.txt
 
 TODO: external (i.e. non-git) commands can also be aliased
+
+
+************ Chapter 3. Git Branching ************
+
+**** Branches in a Nutshell ****
+
+When you make a commit, Git stores a commit object that contains a pointer to the snapshot of the content you staged. This object also contains the author’s name and email, the message that you typed, and pointers to the commit or commits that directly came before this commit (its parent or parents): zero parents for the initial commit, one parent for a normal commit, and multiple parents for a commit that results from a merge of two or more branches.
+
+TODO: read about BLOB
+
+next commit stores a pointer to the commit that came immediately before it.
+A branch in Git is simply a lightweight movable pointer to one of these commits
+
+What happens if you create a new branch? Well, doing so creates a new pointer for you to move around. 
+
+$ git branch test #  creates a new pointer at the same commit you’re currently on
+How does Git know what branch you’re currently on? It keeps a special pointer called HEAD. In Git, this is a pointer to the local branch you’re currently on. In this case, you’re still on master. The git branch command only created a new branch – it didn’t switch to that branch.
+
+$ git log --oneline --decorate # shows where the branch pointers are pointing
+E.g.: 'fa0dd5a (HEAD, core/master, test, master) Aliases'
+FAQ: master & core/master?
+
+$ git checkout test # switch to an existing branch, i.e. move HEAD to point to the 'test' branch
+
+
+
+
 
 
 

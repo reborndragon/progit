@@ -180,12 +180,20 @@ FAQ: master & core/master?
 
 $ git checkout test # switch to an existing branch, i.e. move HEAD to point to the 'test' branch
 $ git commit -a -m 'Part of Branches in a Nutshell'
-$ git checkout master # Local modifications to the files in the working tree are kept, so that they can be committed to the <branch>.
+$ git checkout master # Local modifications to the files in the working tree are kept, so that they can be committed to 'master'.
 NB: That command did two things. It moved the HEAD pointer back to point to the master branch, and it reverted the files in your working directory back to the snapshot that master points to. 
 
 $ git config --global core.editor "'notepad++' -multiInst -notabbar -nosession -noPlugin" # enables me to write commit messages in notepad++
 
+FAQ: 'git log --oneline --decorate --graph --all' does not work as it is in the book
 
+Because a branch in Git is in actuality a simple file that contains the 40 character SHA-1 checksum of the commit it points to, branches are cheap to create and destroy.
+This is in sharp contrast to the way most older VCS tools branch, which involves copying all of the project’s files into a second directory.
+NB: there is a file called 'test' which resides in 'D:\CQG\Learning Git\.git\refs\heads'
+
+**** Basic Branching and Merging ****
+
+$ git checkout -b -dsi0 # create a branch and switch to it at the same time
 
 
 

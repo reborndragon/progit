@@ -193,9 +193,13 @@ NB: there is a file called 'test' which resides in 'D:\CQG\Learning Git\.git\ref
 
 **** Basic Branching and Merging ****
 
-$ git checkout -b -dsi0 # create a branch and switch to it at the same time
+$ git checkout -b dsi0 # create a branch and switch to it at the same time
 
-
+$ git checkout -b mergetest
+$ git commit -m 'smth'
+$ git push core mergetest
+$ git checkout master
+$ git merge mergetest
 
 
 

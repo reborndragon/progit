@@ -179,9 +179,9 @@ E.g.: 'fa0dd5a (HEAD, core/master, test, master) Aliases'
 FAQ: master & core/master?
 
 $ git checkout test # switch to an existing branch, i.e. move HEAD to point to the 'test' branch
-
-
-
+$ git commit -a -m 'Part of Branches in a Nutshell'
+$ git checkout master # Local modifications to the files in the working tree are kept, so that they can be committed to the <branch>.
+NB: That command did two things. It moved the HEAD pointer back to point to the master branch, and it reverted the files in your working directory back to the snapshot that master points to. 
 
 
 

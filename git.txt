@@ -177,6 +177,7 @@ How does Git know what branch you’re currently on? It keeps a special pointer 
 $ git log --oneline --decorate # shows where the branch pointers are pointing
 E.g.: 'fa0dd5a (HEAD, core/master, test, master) Aliases'
 FAQ: master & core/master?
+ANS: as far as I understand if master & core/master do not point to the same commit then some commits have not been pushed to core master yet
 
 $ git checkout test # switch to an existing branch, i.e. move HEAD to point to the 'test' branch
 $ git commit -a -m 'Part of Branches in a Nutshell'
@@ -194,6 +195,16 @@ NB: there is a file called 'test' which resides in 'D:\CQG\Learning Git\.git\ref
 **** Basic Branching and Merging ****
 
 $ git checkout -b -dsi0 # create a branch and switch to it at the same time
+$ git checkout test
+$ git merge dsi0
+NB: commits made in dsi0 after the last common commit in test belong to test as well now
+You’ll notice the phrase “fast-forward” in that merge. Because the commit pointed to by the branch you merged in was directly upstream of the commit you’re on, Git simply moves the pointer forward.
+
+$ git branch -d test # deletes the branch locally
+
+
+
+
 
 
 

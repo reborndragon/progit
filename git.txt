@@ -254,7 +254,18 @@ Remote-tracking branches are references to the state of remote branches. They’
 $ git remote add alt https://github.com/reborndragon/alt
 
 $ git push alt master:master # i.e. take my local master branch and make the remote's master branch
-$ git push alt localbranch:remotebranch
+$ git push alt localbranch:remotebranch # push a local branch into a remote branch that is named differently
+
+$ git config --global credential.helper cache # caches my credentials for 15 minutes
+NB: when using 'store' instead of 'cache', my credentials will be permanently stored in file as plain text
+
+NB: I have committed smth to 'localbranch' but have not pushed it to any of remotes -> I have switched to 'master' -> I have merged 'localbranch' commits into 'master'
+=> the 'git merge' command merges local modifications, not remote ones (I know, it should have been obvious for me in the first place)
+
+
+
+
+
 
 
 

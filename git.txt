@@ -282,7 +282,10 @@ $ git branch --set-upstream-to core/master # here is how I can do it (--set-upst
 
 $ git fetch --all
 
+git pull which essentially a git fetch immediately followed by a git merge in most cases # FAQ: most != all
 
+$ git push core --delete brnch # should delete remote branch called brnch
+Basically all this does is remove the pointer from the server. The Git server will generally keep the data there for a while until a garbage collection runs, so if it was accidentally deleted, it’s often easy to recover.
 
 
 

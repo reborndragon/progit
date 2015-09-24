@@ -88,7 +88,7 @@ you commit too early and possibly forget to add some files, or you mess up your 
 $ git commit --amend
 
 Unstaging: recall git reset HEAD <file>.
-$ git checkout -- git.txt # unmodifying a modified file:
+$ git checkout -- git.txt # unmodifying a modified file
 NB: this command unmodifies only not staged changes.
 
 **** Working with Remotes ****
@@ -259,14 +259,34 @@ $ git push alt localbranch:remotebranch # push a local branch into a remote bran
 $ git config --global credential.helper cache # caches my credentials for 15 minutes
 NB: when using 'store' instead of 'cache', my credentials will be permanently stored in file as plain text
 
-NB: I have committed smth to 'localbranch' but have not pushed it to any of remotes -> I have switched to 'master' -> I have merged 'localbranch' commits into 'master'
+NB: I have committed smth to 'localbranch' but I have not pushed it to any of remotes -> I have switched to 'master' -> I have merged 'localbranch' commits into 'master'
 => the 'git merge' command merges local modifications, not remote ones (I know, it should have been obvious for me in the first place)
 
+$ git checkout core/master
+NB: this yields the following comment: "You are in 'detached HEAD' state". HEAD now refers directly to commit <commit>. This is known as being in detached HEAD state. It means simply that HEAD refers to a specific commit, as opposed to referring to a named branch.
+
+$ git reset HEAD~3 # '7a15f06 (HEAD, alt/master, master) Caching credentials' -> '217b72c (core/master) Branching Workflows'
+$ git checkout -- git.txt # I deleted unstaged modifications
+$ git merge alt/master
+$ git push core master
+
+Checking out a local branch from a remote branch automatically creates what is called a “tracking branch” (or sometimes an “upstream branch”). Tracking branches are local branches that have a direct relationship to a remote branch. If you’re on a tracking branch and type git pull, Git automatically knows which server to fetch from and branch to merge into (this is the most important sentence to understand).
+When you clone a repository, it generally automatically creates a master branch that tracks origin/master.
+
+$ git checkout -b mt core/mergetest # Branch mt set up to track remote branch mergetest from core. Switched to a new branch 'mt'. Now, my local branch called mt will automatically pull from core/mergetest.
+$ git checkout --track core/dsi0 # dsi0 will become my tracking branch called dsi0
+
+$git branch -vv # see what tracking branches you have set up; list out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both
+NB: my local branch called test1 does not track any remote branch; neither does master until I manually specify which remote branch (in my case - from which remote) it should track
+$ git branch --set-upstream-to core/master # here is how I can do it (--set-upstream-to can be replaced with -u)
+
+$ git fetch --all
 
 
 
 
 
+NB: cherry-picking is explained in Chapter 5, Maintaining a project section, Integrating contributed work subsection
 
 
 

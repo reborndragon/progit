@@ -277,21 +277,40 @@ $ git checkout -b mt core/mergetest # Branch mt set up to track remote branch me
 $ git checkout --track core/dsi0 # dsi0 will become my tracking branch called dsi0
 
 $git branch -vv # see what tracking branches you have set up; list out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both
-NB: my local branch called test1 does not track any remote branch; neither does master until I manually specify which remote branch (in my case - from which remote) it should track
+NB: my local branch called test1 does not track any remote branch; neither does master until I manually specify which remote branch (in my case - from which remote, i.e. either core or alt) it should track
 $ git branch --set-upstream-to core/master # here is how I can do it (--set-upstream-to can be replaced with -u)
 
 $ git fetch --all
 
-git pull which essentially a git fetch immediately followed by a git merge in most cases # FAQ: most != all
+git pull is essentially a git fetch immediately followed by a git merge in most cases # FAQ: most != all
 
 $ git push core --delete brnch # should delete remote branch called brnch
 Basically all this does is remove the pointer from the server. The Git server will generally keep the data there for a while until a garbage collection runs, so if it was accidentally deleted, it’s often easy to recover.
+
+**** Rebasing ****
+
+There are two main ways to integrate changes from one branch into another: the merge and the rebase.
+
+# assuming both master and rebasing branches have one commit after common ancestor
+$ git checkout rebasing
+$ git rebase master
+It works by going to the common ancestor of the two branches (the one you’re on and the one you’re rebasing onto), getting the diff introduced by each commit of the branch you’re on, saving those diffs to temporary files, resetting the current branch to the same commit as the branch you are rebasing onto, and finally applying each change in turn.
+At this point, you can go back to the master branch and do a fast-forward merge.
+
+
+
+
+
+
+
 
 
 
 NB: cherry-picking is explained in Chapter 5, Maintaining a project section, Integrating contributed work subsection
 
 
+NB: I see the following line while pushing:
+git: 'credential-cache' is not a git command
 
 
 
